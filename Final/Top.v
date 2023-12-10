@@ -27,31 +27,31 @@ module Top(
     //these two sentence above is to control the dp for display, as above value of these sentences, 
     // the result is show as 1.2345.678, you can modify the subscript number of DigitlaSel for your own needs.
     
-    reg buttom_state = 0; // ÓÃÓÚ´æ´¢¿ª¹Ø×´Ì¬µÄ¼Ä´æÆ÷
-    reg last_buttom_state = 0; // ÓÃÓÚ¼ì²â±ßÔµµÄ¸¨Öú¼Ä´æÆ÷
+    reg buttom_state = 0; // ç”¨äºå­˜å‚¨å¼€å…³çŠ¶æ€çš„å¯„å­˜å™¨
+    reg last_buttom_state = 0; // ç”¨äºæ£€æµ‹è¾¹ç¼˜çš„è¾…åŠ©å¯„å­˜å™¨
     
     always @(posedge Clk) begin
         if (Buttom && !last_buttom_state) begin
-            buttom_state <= !buttom_state; // ¼ì²âµ½ÉÏÉıÑØÊ±·­×ª×´Ì¬
+            buttom_state <= !buttom_state; // æ£€æµ‹åˆ°ä¸Šå‡æ²¿æ—¶ç¿»è½¬çŠ¶æ€
         end
-        last_buttom_state <= Buttom; // ¸üĞÂ×îºóµÄ×´Ì¬
+        last_buttom_state <= Buttom; // æ›´æ–°æœ€åçš„çŠ¶æ€
     end
     
     
     always @(*) 
         begin
             if (buttom_state) begin
-                Number = 32'h31910603; // ¹Ì¶¨ÏÔÊ¾´ËÊı×Ö
+                Number = 32'h19198100; // å›ºå®šæ˜¾ç¤ºæ­¤æ•°å­—
                 end 
             else begin
-                Number[31:28] = 15; // ÏÔÊ¾ 'F'
-                Number[27:24] = 0;  // ÏÔÊ¾ '0'
-                Number[23:20] = Frequency / 1000; // ÆµÂÊµÄÇ§Î»
-                Number[19:16] = (Frequency / 100) % 10; // ÆµÂÊµÄ°ÙÎ»
-                Number[15:12] = (Frequency / 10) % 10; // ÆµÂÊµÄÊ®Î»
-                Number[11:8] = Frequency % 10; // ÆµÂÊµÄ¸öÎ»
-                Number[7:4] = 10; // ÏÔÊ¾ '.'
-                Number[3:0] = 11; // ÏÔÊ¾ '.'
+                Number[31:28] = 15; // æ˜¾ç¤º 'F'
+                Number[27:24] = 0;  // æ˜¾ç¤º '0'
+                Number[23:20] = Frequency / 1000; // é¢‘ç‡çš„åƒä½
+                Number[19:16] = (Frequency / 100) % 10; // é¢‘ç‡çš„ç™¾ä½
+                Number[15:12] = (Frequency / 10) % 10; // é¢‘ç‡çš„åä½
+                Number[11:8] = Frequency % 10; // é¢‘ç‡çš„ä¸ªä½
+                Number[7:4] = 10; // æ˜¾ç¤º '.'
+                Number[3:0] = 11; // æ˜¾ç¤º '.'
             end
         end
 
